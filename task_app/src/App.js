@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 
-
 import "bootswatch/yeti/bootstrap.css";
-
 import './App.css';
 
 import { Navbar, NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "react-bootstrap";
-
-
 
 class App extends Component {
   state = { tasks: [] };
@@ -77,9 +73,6 @@ class App extends Component {
             </Col>
           </Row>
         </Grid>
-
-
-
       </div>
     );
   }
