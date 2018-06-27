@@ -1,7 +1,7 @@
 # task_server
 Task list application (frontend (React) + backend (Express))
 
-![screenshot](https://i.imgur.com/IPoaBH8.png)
+![screenshot](https://i.imgur.com/DxlSqCm.png)
 
 ## Things to do:
 - [x] Create a basic skeleton of backend and frontend
