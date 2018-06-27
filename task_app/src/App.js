@@ -6,7 +6,8 @@ import "bootswatch/superhero/bootstrap.css";
 
 import './App.css';
 
-import { Navbar, NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "react-bootstrap";
+// react-bootstrap components
+import { NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "react-bootstrap";
 
 // Sends put request to Express server (/tasks) with new task information: random Id and text from input form
 const sendNewTask = function (taskText) {
@@ -56,6 +57,7 @@ class MyTextInput extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  // On input text change sends new text into handler from props
   handleChange(event) {
     this.props.onTextChange(event.target.value);
   }
@@ -65,7 +67,9 @@ class MyTextInput extends React.Component {
       <FormControl
         type="text"
         placeholder="Enter text"
+        // Set value from props
         value={this.props.value}
+        // Set hendler from props
         onChange={this.handleChange}
       />
     );
@@ -76,16 +80,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.setState({textInput : ""});
+    this.setState({ textInput: "" });
   }
 
+  // On input text change saves new text in state
   handleInputChange(text) {
     console.log("Apps handleInputChange");
-    this.setState({textInput: text});
+    this.setState({ textInput: text });
   }
 
+  // Clears input text field
   clearTextInput() {
-    this.setState({textInput : ""});
+    this.setState({ textInput: "" });
   }
 
   state = { tasks: [] };
@@ -101,7 +107,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Update onMount
+    // Update list onMount
     this.updateTaskList();
   }
 
