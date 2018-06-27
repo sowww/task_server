@@ -8,9 +8,6 @@ import './App.css';
 
 import { Navbar, NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "react-bootstrap";
 
-// Variable to store text from input form
-var textInputString = ""
-
 // Sends put request to Express server (/tasks) with new task information: random Id and text from input form
 const sendNewTask = function (taskText) {
   if (taskText != "") {
@@ -56,14 +53,11 @@ const deleteLastTask = function () {
 class MyTextInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" }
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
-    // Send input text to global variable
-    textInputString = event.target.value;
+    this.props.onTextChange(event.target.value);
   }
 
   render() {
@@ -71,6 +65,7 @@ class MyTextInput extends React.Component {
       <FormControl
         type="text"
         placeholder="Enter text"
+        value={this.props.value}
         onChange={this.handleChange}
       />
     );
@@ -78,6 +73,21 @@ class MyTextInput extends React.Component {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.setState({textInput : ""});
+  }
+
+  handleInputChange(text) {
+    console.log("Apps handleInputChange");
+    this.setState({textInput: text});
+  }
+
+  clearTextInput() {
+    this.setState({textInput : ""});
+  }
+
   state = { tasks: [] };
 
   // Sends get request to get tasks json from Expres server and use it to update our list
@@ -107,6 +117,7 @@ class App extends Component {
           <Row>
             <Col md={4} sm={4} />
             <Col md={4} sm={4}>
+              <h1>Tasks</h1>
               <Nav
                 bsStyle="pills"
                 stacked
@@ -114,21 +125,21 @@ class App extends Component {
                   //this.setState({ activeIndex: index }); #TODO
                 }}
               >
-                <h1>Tasks</h1>
                 {this.state.tasks.map(task =>
                   <NavItem className='task-item' key={task.id}>{task.text}</NavItem>
                 )}
               </Nav>
               <br />
-              <MyTextInput />
+              <MyTextInput value={this.state.textInput} onTextChange={this.handleInputChange} />
               <br />
               <ButtonGroup vertical block>
                 <Button
                   bsStyle="success"
                   onClick={() => {
-                    console.log(textInputString);
-                    sendNewTask(textInputString);
+                    console.log(this.state.textInput);
+                    sendNewTask(this.state.textInput);
                     this.updateTaskList();
+                    this.clearTextInput();
                   }}
                 >
                   ADD TASK
@@ -138,6 +149,7 @@ class App extends Component {
                   onClick={() => {
                     deleteLastTask();
                     this.updateTaskList();
+                    console.log(this.state);
                   }}
                 >
                   DELETE LAST TASK
