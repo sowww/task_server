@@ -13,15 +13,17 @@ var textInputString = ""
 
 // Sends put request to Express server (/tasks) with new task information: random Id and text from input form
 const sendNewTask = function (taskText) {
-  fetch('/tasks',
-    {
-      method: "put",
-      body: JSON.stringify({ id: Math.floor(Math.random() * 1000), text: taskText }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    });
+  if (taskText != "") {
+    fetch('/tasks',
+      {
+        method: "put",
+        body: JSON.stringify({ id: Math.floor(Math.random() * 1000), text: taskText }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      });
+  }
 }
 
 // Sends delete request to Express server (/tasks) with deleteAll key
@@ -109,7 +111,7 @@ class App extends Component {
                 bsStyle="pills"
                 stacked
                 onSelect={index => {
-                  //this.setState({ activeIndex: index });
+                  //this.setState({ activeIndex: index }); #TODO
                 }}
               >
                 <h1>Tasks</h1>
