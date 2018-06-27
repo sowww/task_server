@@ -7,7 +7,7 @@ Task list application (frontend (React) + backend (Express))
 - [x] Create a basic skeleton of backend and frontend
 - [x] Create an appearance of the application
 - [x] Make sure that React app can get some data from Express server
-- [ ] Make sure that React app can send some data to Express server
+- [x] Make sure that React app can send some data to Express server
 - [ ] Create a database (MongoDB/PostgreSQL?)
 - [ ] Learn how to interact with database
-- [ ] Add some real functionality to react-app
+- [x] Add some real functionality to react-app
