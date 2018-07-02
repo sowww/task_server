@@ -11,7 +11,7 @@ import { NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "
 
 // Sends put request to Express server (/tasks) with new task information: random Id and text from input form
 const sendNewTask = function (taskText) {
-  if (taskText != "") {
+  if (taskText !== "") {
     fetch('/tasks',
       {
         method: "put",
@@ -172,6 +172,7 @@ class App extends Component {
               </ButtonGroup>
             </Col>
           </Row>
+          <br />
         </Grid>
       </div>
     );
