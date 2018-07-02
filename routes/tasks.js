@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-// connect to postgreSQL tasks database
+// Connect to postgreSQL tasks database
 var pgp = require("pg-promise")(/*options*/);
 var db = pgp("postgres://express:express@localhost:5432/tasks");
 
+// Get tasks from Database
 var tasks = [];
 db.any('SELECT * FROM tasks')
   .then((data) => {
