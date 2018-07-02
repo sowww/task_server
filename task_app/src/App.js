@@ -11,7 +11,7 @@ import { NavItem, Nav, Grid, Row, Col, Button, ButtonGroup, FormControl } from "
 
 // Sends put request to Express server (/tasks) with new task information: random Id and text from input form
 const sendNewTask = function (taskText) {
-  if (taskText !== "") {
+  if (taskText != undefined && taskText != "") {
     fetch('/tasks',
       {
         method: "put",
@@ -94,7 +94,10 @@ class App extends Component {
     this.setState({ textInput: "" });
   }
 
-  state = { tasks: [] };
+  state = { 
+    textInput: '',
+    tasks: [], 
+  };
 
   // Sends get request to get tasks json from Expres server and use it to update our list
   updateTaskList() {
