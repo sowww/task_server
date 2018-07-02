@@ -8,6 +8,6 @@ Task list application (frontend (React) + backend (Express))
 - [x] Create an appearance of the application
 - [x] Make sure that React app can get some data from Express server
 - [x] Make sure that React app can send some data to Express server
-- [ ] Create a database (MongoDB/PostgreSQL?)
-- [ ] Learn how to interact with database
 - [x] Add some real functionality to react-app
+- [x] Create a database (MongoDB/PostgreSQL?)
+- [ ] Learn how to interact with database
