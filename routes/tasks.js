@@ -1,20 +1,23 @@
 var express = require('express');
 var router = express.Router();
 
-// variable to store our task list
-var tasks = [{
-  id: 1,
-  text: "Task 1"
-}, {
-  id: 2,
-  text: "Task 2",
-}, {
-  id: 3,
-  text: "Task 3",
-}, {
-  id: 4,
-  text: "Task 4",
-}];
+// connect to postgreSQL tasks database
+var pgp = require("pg-promise")(/*options*/);
+var db = pgp("postgres://express:express@localhost:5432/tasks");
+
+var tasks = [];
+db.any('SELECT * FROM tasks')
+  .then((data) => {
+    data.forEach((val) => {
+      task = { 
+        id : val.id,
+        text : val.task_value
+      }
+      tasks.push(task);
+    });
+    console.log(tasks);
+  })
+  .catch((error) => console.log(error));
 
 // Sends tasks json on get request
 router.get('/', function(req, res) {
